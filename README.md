@@ -22,6 +22,6 @@
 
 ### Notes
 
-        [http://www.csie.ntu.edu.tw/~cjlin/libsvm/](http://www.csie.ntu.edu.tw/~cjlin/libsvm/)
+[http://www.csie.ntu.edu.tw/~cjlin/libsvm/](http://www.csie.ntu.edu.tw/~cjlin/libsvm/)
 
-        [http://ntu.csie.org/~piaip/svm/svm_tutorial.html#](LIBSVM tutorial)
+[http://ntu.csie.org/~piaip/svm/svm_tutorial.html#](LIBSVM tutorial)
