@@ -62,14 +62,8 @@ int svmtrain(int argc, char **argv)
 	char model_file_name[1024];
 	const char *error_msg;
 
-        for (int i = 1; i < argc; i++) { LOGD("Cmd is %s\n", argv[i]); }
-
 	parse_command_line(argc, argv, input_file_name, model_file_name);
-        LOGD("input file %s, model file %s\n", argv[1], argv[5]);
-        LOGD("Done with command line parsing\n");
-        LOGD("input file %s, model file %s\n", input_file_name, model_file_name);
 	read_problem(input_file_name);
-        LOGD("Done with read problem\n");
 	error_msg = svm_check_parameter(&prob,&param);
 
 	if(error_msg)
@@ -166,7 +160,6 @@ void parse_command_line(int argc, char **argv, char *input_file_name, char *mode
 	// parse options
 	for(i=1;i<argc;i++)
 	{
-                LOGD("%d, current option is %s, first is %c", i, argv[i], argv[i][0]);
 		if(argv[i][0] != '-') break;
 		if(++i>=argc)
 			exit_with_help_for_train();

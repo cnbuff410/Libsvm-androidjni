@@ -3,9 +3,10 @@
  * Ported by likunarmstrong@gmail.com
  */
 
-#ifndef CLASSIFIER_H
-#define CLASSIFIER_H
+#ifndef PREDICT_H
+#define PREDICT_H
 
-int predict(const char *modelFile, const char *dataFile, const char*outFile);
+int predict(float **values, int **indices, int rowNum, int colNum, int isProb,
+        const char *modelFile, int *labels);
 
 #endif

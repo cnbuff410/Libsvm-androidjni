@@ -6,6 +6,7 @@
 #ifndef SVM_PREDICT_H
 #define SVM_PREDICT_H
 
-int svmpredict(int argc, char **argv);
+int svmpredict(float **values, int **indices, int rowNum, int colNum,
+        int predict_probability, const char *modelFile, int *labels);
 
 #endif
