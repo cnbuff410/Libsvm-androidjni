@@ -3,18 +3,16 @@
     SVM is a machine learning and classification algorithm, LIBSVM is a popular free implementation of it, 
     written by Chih-Chung Chang and Chih-Jen Lin, of National Taiwan University, Taipei.
 
-    Libsvm-androidjni is a modification version of the original LIBSVM that runs in Android JNI framework 
-    to significantly reduce computation time. The functionality and interface of LIBSVM remains the same. 
+    Libsvm-androidjni is a modification version of the original LIBSVM that runs in Android JNI framework to 
+    significantly reduce computation time. The functionality and interface of LIBSVM remains the same. 
     Primary changes including:
     
-    * Prediction interface is changed to be similar to Matlab version. Please
-       refer to "Usage" for detailed change.
-    * Accuracy calculation is removed and should be done in Java code. The
-       usage is included in the example project.
+    * Prediction interface is changed to be similar to Matlab version. Please refer to "Usage" for detailed change.
+    * Accuracy calculation is removed and should be done in Java code. The usage is included in the example project.
     * Log function is Supported under native environment.
 
-    A simple Android project example is available. Again, refer to "Usage" for specific instruction on 
-    how to compile. Shoot me a email at <likunarmstrong@gmail.com> if you have any other question.
+    A simple Android project example is available. Again, refer to "Usage" for specific instruction on how to 
+    compile. Shoot me a email at <likunarmstrong@gmail.com> if you have any other question.
 
 - - - 
 ## Versions
@@ -31,10 +29,9 @@
     value1, value2, .... valueN (and the order of the values are specified by the respective index), 
     and the class (or the result) of this array is label.
 
-    The reason why there are multiple values for each vector is that the input data to the problem you 
-    were trying to solve involves lots of 'features', or say 'attributes', so the input will be a 
-    set (or say vector/array). For example, Any 2-dimension point has coordinates X and Y so it has two 
-    attributes (X and Y).
+    The reason why there are multiple values for each vector is that the input data to the problem you were 
+    trying to solve involves lots of 'features', or say 'attributes', so the input will be a set/array. 
+    For example, Any 2-dimension point has coordinates X and Y so it has two attributes (X and Y).
     
     To describe two points (0,3) and (5,8) as having labels(classes) 1 and 2, we will write them as:
 
@@ -48,8 +45,7 @@
 
     To compile and run this project, follow the steps below:
 
-    1. Copy the "training_set" file onto SDCard *first*. Then change the variable "trainingFileLoc" in Java 
-    code to be the its location.
+    1. Copy "training_set" file to sdcard. Change the variable "trainingFileLoc" in Java code to be the its location.
     2. Run "ndk_compile" script to compile all native code into native library for Java code to call.
     3. Use Eclipse to compile and install the whole app.
 
