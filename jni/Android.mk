@@ -19,14 +19,11 @@ LOCAL_C_INCLUDES += $(JNI_H_INCLUDE)
 
 LOCAL_SRC_FILES := \
     jni/onload.cpp \
-    jni/edu_colorado_eegpoc_Signal.cpp \
-    src/filter.cpp \
-    src/wavelet.cpp \
+    jni/info_kunli_androidlibsvmexample_AndroidLibsvmExampleActivity.cpp \
     src/train.cpp \
     src/predict.cpp \
     src/svm/svm-train.cpp \
     src/svm/svm-predict.cpp \
-    src/svm/svm-scale.cpp \
     src/svm/svm.cpp
 
 LOCAL_NDK_VERSION := 4
