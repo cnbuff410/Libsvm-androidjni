@@ -77,7 +77,7 @@ int predict(float **values, int **indices, int rowNum, int colNum, int *labels, 
             }
             x[colNum].index = -1;
 
-            // ~ky (Probability prediction )
+            // Probability prediction 
             if (predict_probability && (svm_type==C_SVC || svm_type==NU_SVC))
             {
                     predict_label = svm_predict_probability(model,x,prob_estimates);
