@@ -27,7 +27,7 @@ int train(const char *trainingFile, int kernelType, int cost, float gamma,
     cmd[6] = (char *)calloc(PARA_LEN, sizeof(char));
     sprintf(cmd[6], "%.2f", gamma);
 
-        cmd[7] = "-b";
+    cmd[7] = "-b";
     cmd[8] = (char *)calloc(PARA_LEN, sizeof(char));
     sprintf(cmd[8], "%d", isProb);
 	
