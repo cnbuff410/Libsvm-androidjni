@@ -6,7 +6,7 @@
 
 namespace example {
 
-static jint trainClassifier(JNIEnv *env, jobject obj, jstring trainingFileS,
+static jint trainClassifier( JNIEnv *env, jobject obj, jstring trainingFileS,
         jint kernelType, jint cost, jfloat gamma, jstring modelFileS) {
     jboolean isCopy;
     const char *trainingFile = env->GetStringUTFChars(trainingFileS, &isCopy);
