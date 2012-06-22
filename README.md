@@ -75,7 +75,7 @@
     A array of data vector: value1, value2, ... , valueN
     A array of index vector: index1, index2, ..., indexN
     Dimensions of the matrix: rowNum, colNum
-    Flag for probability prediction: always false(0) for now
+    Flag for probability prediction: 0 for no, 1 for yes
     A model file: obtained from training
     A array of labels: Predicted labels for each data vector
 
@@ -86,7 +86,11 @@
 ## TODO
 
     1. Svm-scale is not ported.
-    2. Probability prediction is not supported yet.
+
+- - -
+## Update
+
+    Probablity prediction is supported, thank kuoyenlo for his patch.
 
 ### Notes
 
