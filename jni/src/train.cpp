@@ -42,7 +42,14 @@ int train(const char *trainingFile, int kernelType, int cost, float gamma,
     cmd[10][len] = '\0';
 
     int result = svmtrain(cmdLen, cmd);
-    //for (int i = 2; i < cmdLen-2; i *= 2) { free(cmd[i]); }
+
+    // Clean up space
+    for (int i = 2; i < cmdLen; i += 2) {
+        free(cmd[i]);
+        cmd[i] = NULL;
+    }
+    free(cmd[9]);
+    cmd[9] = NULL;
 
     return result;
 }
