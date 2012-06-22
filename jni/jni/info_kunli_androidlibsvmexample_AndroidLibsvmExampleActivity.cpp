@@ -7,12 +7,12 @@
 namespace example {
 
 static jint trainClassifier(JNIEnv *env, jobject obj, jstring trainingFileS,
-        jint kernelType, jint cost, jfloat gamma, jstring modelFileS) {
+        jint kernelType, jint cost, jfloat gamma, jint isProb, jstring modelFileS) {
     jboolean isCopy;
     const char *trainingFile = env->GetStringUTFChars(trainingFileS, &isCopy);
     const char *modelFile = env->GetStringUTFChars(modelFileS, &isCopy);
 
-    int v = train(trainingFile, kernelType, cost, gamma, modelFile);
+    int v = train(trainingFile, kernelType, cost, gamma, isProb, modelFile);
 
     env->ReleaseStringUTFChars(trainingFileS, trainingFile);
     env->ReleaseStringUTFChars(modelFileS, modelFile);
@@ -22,10 +22,11 @@ static jint trainClassifier(JNIEnv *env, jobject obj, jstring trainingFileS,
 
 static jint doClassification(JNIEnv *env, jobject obj, jobjectArray valuesArr,
         jobjectArray indicesArr, jint isProb, jstring modelFiles,
-        jintArray labelsArr) {
+        jintArray labelsArr ,jdoubleArray probsArr) {
     jboolean isCopy;
     const char *modelFile = env->GetStringUTFChars(modelFiles, &isCopy);
     int *labels = env->GetIntArrayElements(labelsArr, NULL);
+    double *probs = env->GetDoubleArrayElements(probsArr, NULL);
 
     int rowNum = env->GetArrayLength(valuesArr);
     jfloatArray dim = (jfloatArray)env->GetObjectArrayElement(valuesArr, 0);
@@ -49,22 +50,23 @@ static jint doClassification(JNIEnv *env, jobject obj, jobjectArray valuesArr,
         env->ReleaseIntArrayElements(irows, ielement, JNI_ABORT);
     }
 
-    int r = predict(values, indices, rowNum, colNum, isProb, modelFile, labels);
+    int r = predict(values, indices, rowNum, colNum, isProb, modelFile, labels, probs);
 
     for (int i = 0; i < rowNum; i++) {
         free(values[i]);
         free(indices[i]);
     }
     env->ReleaseIntArrayElements(labelsArr, labels, 0);
+    env->ReleaseDoubleArrayElements(probsArr, probs, 0);
     env->ReleaseStringUTFChars(modelFiles, modelFile);
     return r;
 }
 
 static JNINativeMethod sMethods[] = {
     /* name, signature, funcPtr */
-    {"doClassificationNative", "([[F[[IILjava/lang/String;[I)I",
+    {"doClassificationNative", "([[F[[IILjava/lang/String;[I[D)I",
         (void*)doClassification},
-    {"trainClassifierNative", "(Ljava/lang/String;IIFLjava/lang/String;)I",
+    {"trainClassifierNative", "(Ljava/lang/String;IIFILjava/lang/String;)I",
         (void*)trainClassifier},
 };
 
