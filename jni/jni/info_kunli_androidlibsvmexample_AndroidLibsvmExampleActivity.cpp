@@ -57,7 +57,7 @@ static jint doClassification(JNIEnv *env, jobject obj, jobjectArray valuesArr,
         free(indices[i]);
     }
     env->ReleaseIntArrayElements(labelsArr, labels, 0);
-	env->ReleaseDoubleArrayElements(probsArr, probs, 0);
+    env->ReleaseDoubleArrayElements(probsArr, probs, 0);
     env->ReleaseStringUTFChars(modelFiles, modelFile);
     return r;
 }
