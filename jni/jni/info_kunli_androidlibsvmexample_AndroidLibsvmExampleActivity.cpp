@@ -26,7 +26,7 @@ static jint doClassification(JNIEnv *env, jobject obj, jobjectArray valuesArr,
     jboolean isCopy;
     const char *modelFile = env->GetStringUTFChars(modelFiles, &isCopy);
     int *labels = env->GetIntArrayElements(labelsArr, NULL);
-        double *probs = env->GetDoubleArrayElements(probsArr, NULL);
+    double *probs = env->GetDoubleArrayElements(probsArr, NULL);
 
     int rowNum = env->GetArrayLength(valuesArr);
     jfloatArray dim = (jfloatArray)env->GetObjectArrayElement(valuesArr, 0);
