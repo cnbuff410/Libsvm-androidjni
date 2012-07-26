@@ -7,6 +7,6 @@
 #define SVM_PREDICT_H
 
 int svmpredict(float **values, int **indices, int rowNum, int colNum,
-        int predict_probability, const char *modelFile, int *labels);
+        int isProb, const char *modelFile, int *labels, double* prob_estimates);
 
 #endif
