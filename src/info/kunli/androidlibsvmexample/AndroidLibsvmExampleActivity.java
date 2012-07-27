@@ -13,8 +13,10 @@ public class AndroidLibsvmExampleActivity extends Activity {
 	private static final String TAG = "Libsvm";
 	
     // svm native
-    private native int trainClassifierNative(String trainingFile, int kernelType, int cost, float gamma, String modelFile);
-    private native int doClassificationNative(float values[][], int indices[][], int isProb, String modelFile, int labels[]);
+    private native int trainClassifierNative(String trainingFile, int kernelType,
+    		int cost, float gamma, int isProb, String modelFile);
+    private native int doClassificationNative(float values[][], int indices[][],
+    		int isProb, String modelFile, int labels[], double probs[]);
     
  // Load the native library
     static {
@@ -50,10 +52,12 @@ public class AndroidLibsvmExampleActivity extends Activity {
     	// Svm training
     	int kernelType = 2; // Radial basis function
     	int cost = 4; // Cost
+    	int isProb = 0;
     	float gamma = 0.25f; // Gamma
     	String trainingFileLoc = Environment.getExternalStorageDirectory()+"/training_set";
     	String modelFileLoc = Environment.getExternalStorageDirectory()+"/model";
-    	if (trainClassifierNative(trainingFileLoc, kernelType, cost, gamma, modelFileLoc) == -1) {
+    	if (trainClassifierNative(trainingFileLoc, kernelType, cost, gamma, isProb,
+    			modelFileLoc) == -1) {
     		Log.d(TAG, "training err");
     		finish();
     	}
@@ -66,7 +70,8 @@ public class AndroidLibsvmExampleActivity extends Activity {
      * 	-1: Error
      * 	0: Correct
      */
-    public int callSVM(float values[][], int indices[][], int groundTruth[], int isProb, String modelFile, int labels[]) {
+    public int callSVM(float values[][], int indices[][], int groundTruth[], int isProb, String modelFile,
+    		int labels[], double probs[]) {
     	// SVM type
     	final int C_SVC = 0;
     	final int NU_SVC = 1;
@@ -85,7 +90,8 @@ public class AndroidLibsvmExampleActivity extends Activity {
     	int svm_type = C_SVC;
     	if (num != indices.length)
     		return -1;
-        int r = doClassificationNative(values, indices, isProb, modelFile, labels);
+    	// If isProb is true, you need to pass in a real double array for probability array
+        int r = doClassificationNative(values, indices, isProb, modelFile, labels, probs);
         
         // Calculate accuracy
         if (groundTruth != null) {
@@ -134,10 +140,11 @@ public class AndroidLibsvmExampleActivity extends Activity {
         };
         int[] groundTruth = null;
         int[] labels = new int[4];
+        double[] probs = new double[4];
         int isProb = 0; // Not probability prediction
         String modelFileLoc = Environment.getExternalStorageDirectory()+"/model";
 
-        if (callSVM(values, indices, groundTruth, isProb, modelFileLoc, labels) != 0) {
+        if (callSVM(values, indices, groundTruth, isProb, modelFileLoc, labels, probs) != 0) {
                 Log.d(TAG, "Classification is incorrect");
         }
         else {

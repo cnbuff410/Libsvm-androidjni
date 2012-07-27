@@ -79,15 +79,12 @@ int predict(float **values, int **indices, int rowNum, int colNum, int *labels, 
             if (isProb && (svm_type==C_SVC || svm_type==NU_SVC))
             {
                     predict_label = svm_predict_probability(model,x,prob_estimates);
-					//LOGD("in predict %.2f", prob_estimates[0]);
 					labels[0]=predict_label;
 
             }
             else { labels[i] = svm_predict(model,x); }
 	} // For
 
-	//if(enable_predict_probability)
-	//	free(prob_estimates);
         return 0;
 }
 
