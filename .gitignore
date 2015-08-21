@@ -23,3 +23,15 @@ m
 
 # Vim temp file
 *.swp
+
+# IntelliJ IDE settings
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Built application files
+build/
+
+# Gradle generated files
+.gradle/
